@@ -74,7 +74,8 @@ header{
     margin-top: 5px;
     margin-bottom: 0px;
     color: #e9c46a;
-    font-family: 'Bree Serif', serif;
+    font-family: 'Roboto Slab', serif;
+    
 }
 
 .sub-title {
@@ -84,7 +85,7 @@ header{
     clear: both;
     margin-top: 0px;
     margin-bottom: 20px;
-    font-family: 'Bree Serif', serif;
+    font-family: 'Roboto Slab', serif;
 }
 
 .head-p {
