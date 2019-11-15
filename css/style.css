@@ -1,0 +1,221 @@
+/*-----------Stylesheet--------------*/
+/*--Created by O. Badajos 11/15/19---*/
+
+/*----color scheme
+#264653 japanese indigo
+#46acc2 wheat
+#e76f51 light red ochre
+#e9c46a hansa yellow
+#f3dead mindaro
+#f3e9d2 eggshell
+*/
+
+/* Global styles
+------------------------------------*/
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;    
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0px;  
+    background:#264653;
+}
+
+a {
+    color: #e76f51;
+    font-family:sans-serif;
+}
+a:hover {
+    text-decoration: none;
+}
+
+.wrapper{
+    max-width: 100%;
+    margin: 0px auto; 
+}
+
+ /*Map
+------------------------------------*/
+.chart {
+    width: 50%;
+    height: 500px;
+    border-right: 5px solid #46acc2;
+    border-top: 5px solid #46acc2;
+    border-bottom: 5px solid #46acc2;
+    background-color: #f3e9d2;
+    float: right;
+}
+
+.map {
+    width: 50%;
+    height: 500px;
+    display: inline-block;
+    border:5px solid #46acc2;
+    margin: 0px auto;
+    padding: 10px auto;
+    float: left;  
+}
+
+/* Header & Footer
+------------------------------------*/
+/* Header*/
+header{
+    text-align: center;
+}
+
+.head-title {
+    font-size: 60px;
+    font-weight: 500;
+    padding-top: 5px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    color: #e9c46a;
+    font-family: 'Bree Serif', serif;
+}
+
+.sub-title {
+    font-size: 30px;
+    font-weight: 500;
+    color: #e9c46a;
+    clear: both;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    font-family: 'Bree Serif', serif;
+}
+
+.head-p {
+    font-size: 18px;
+    color: #f3dead;
+    margin: 0px;
+    padding-bottom: 0px;
+    margin-left:20px;
+    margin-right:20px;
+    clear: both;
+    font-family:sans-serif;
+}
+
+/*Footer*/
+footer {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    clear:both;
+    padding-bottom: 30px;
+}
+
+.citation {
+    margin: 0px;
+}
+
+#creditText a {
+    padding: 5px;
+    display: inline-block;
+}
+
+/* map
+------------------------------------*/
+.regions {
+    stroke: #000;
+    stroke-width: 0.5px;
+    stroke-linecap: round;
+}
+
+.gratLines {
+    fill: none;
+    stroke: #999;
+    stroke-width: 1px;
+}
+
+.gratBackground, .water {
+    fill: #889aa1;
+}
+
+.alaska {
+    fill: #f3e9d2;
+    stroke: #23404c;
+    stroke-width: 1px;
+    fill-opacity="0.4"
+}
+
+/* chart
+------------------------------------*/
+.chartTitle {
+    color: #114b5f;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.chartBackground {
+    fill: #f3e9d2;
+}
+
+.chartFrame {
+    fill: none;
+    stroke: #999;
+    stroke-width: 3px;
+    shape-rendering: crispEdges;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #999;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-family: sans-serif;
+    font-size: 0.8em;
+    fill: #999;
+}
+
+.numbers {
+    fill: white;
+    font-family: sans-serif;
+}
+
+/* dropdown
+------------------------------------*/
+.dropdown {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    z-index: 10;
+    font-family: sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 2px;
+    border: 1px solid #999;
+    box-shadow: 2px 2px 4px #999;
+    background-color: #f3e9d2;
+}
+
+option {
+    font-weight: normal;
+}
+
+/* labels
+------------------------------------*/
+.infolabel {
+    position: absolute;
+    height: 80px;
+    min-width: 100px;
+    color: #264653;
+    background-color: #f3dead;
+    border: solid thin #fff;
+    padding: 5px 10px;
+}
+
+.infolabel h1 {
+    margin: 0 20px 0 0;
+    padding: 0;
+    display: inline-block;
+    line-height: 1em;
+}
