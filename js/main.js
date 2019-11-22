@@ -2,7 +2,7 @@
 (function(){
 
 //pseudo-global variables
-var attrArray = ["Sample Size", "Percent Birth", "Percent Pregnant", "Twin Rate", "Avg Selenium (ppb)", "Franzman (Fall)", "Franzman (Spring)", "Percent Calf Survival"];
+var attrArray = ["Sample Size", "Percent Birth", "Percent Pregnant", "Twin Rate", "Avg Selenium (ppb)", "Franzman (Fall)", "Franzman (Spring)", "Percent Calf Survival", "Max Fat (Fall)", "Max Fat (Spring)"];
 console.log(attrArray)
 var expressed = attrArray[0]; //initial attribute
 
@@ -18,7 +18,7 @@ var chartWidth = window.innerWidth * 0.425,
 
 //create a scale to size bars proportionally to frame and for axis
 var yScale = d3.scaleLinear()
-    .range([463, 0])
+    .range([chartHeight-10, 0])
     .domain([0, 110]);
     
 //begin script when window loads
@@ -317,7 +317,29 @@ function createDropdown(csvData){
 function changeAttribute(attribute, csvData){
     //change the expressed attribute
     expressed = attribute;
-
+    
+    //change yscale dynamically
+    var csvmax = d3.max(csvData, function(d) {return parseFloat(d[expressed])});
+    
+    console.log(csvmax);
+    
+    yScale = d3.scaleLinear()
+        .range([chartHeight - 10, 0])
+        .domain([0, (csvmax*1.1)])
+        .nice();
+    
+    //update vertical axis
+    d3.select(".axis").remove();
+    var yAxis = d3.axisLeft()
+        .scale(yScale);
+    
+    //place axis
+    var axis = d3.select(".chart")
+        .append("g")
+        .attr("class", "axis")
+        .attr("transform", translate)
+        .call(yAxis);    
+    
     //recreate the color scale
     var colorScale = makeColorScale(csvData);
 
@@ -340,7 +362,7 @@ function changeAttribute(attribute, csvData){
             return i * 20
         })
         .duration(500);
-            
+        
     updateChart(bars, csvData.length, colorScale);
 };
 
@@ -354,7 +376,7 @@ function updateChart(bars, n, colorScale){
         })
         //size/resize bars
         .attr("height", function(d, i){
-            return 463 - yScale(parseFloat(d[expressed]));
+            return (chartHeight-10) - yScale(parseFloat(d[expressed]));
         })
         .attr("y", function(d, i){
             return yScale(parseFloat(d[expressed])) + topBottomPadding;
