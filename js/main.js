@@ -3,7 +3,9 @@
 
 //pseudo-global variables
 var attrArray = ["Sample Size", "Percent Birth", "Percent Pregnant", "Twin Rate", "Avg Selenium (ppb)", "Franzman (Fall)", "Franzman (Spring)", "Percent Calf Survival", "Max Fat (Fall)", "Max Fat (Spring)"];
-console.log(attrArray)
+
+/*console.log(attrArray)*/
+
 var expressed = attrArray[0]; //initial attribute
 
 //chart frame dimensions
@@ -208,11 +210,12 @@ function makeColorScale(data){
     var colorScale = d3.scaleThreshold()
         .range(colorClasses);
 
-    //build array of all values of the expressed attribute
+    //build array of all values of the expressed attribute (if gets rid of Nan)
     var domainArray = [];
     for (var i=0; i<data.length; i++){
         var val = parseFloat(data[i][expressed]);
-        domainArray.push(val);
+        if (typeof val == 'number' && !isNaN(val)){
+        domainArray.push(val)};
     };
 
     //cluster data using ckmeans clustering algorithm to create natural breaks
@@ -272,6 +275,7 @@ function choropleth(props, colorScale){
 };
 
 //---------------------------------------------------------------- 
+    
 function setGraticule(map, path){
         var graticule = d3.geoGraticule()
             .step([5, 5]); //place graticule lines every 5 degrees of longitude and latitude
@@ -282,9 +286,10 @@ function setGraticule(map, path){
             .attr("class", "gratBackground") //assign class for styling
             .attr("d", path) //project graticule
 
-        //Example 2.6 line 5...create graticule lines
+        //create graticule lines
         var gratLines = map.selectAll(".gratLines") //select graticule elements that will be created
 };
+    
 //----------------------------------------------------------------
     
 //function to create a dropdown menu for attribute selection
@@ -321,7 +326,7 @@ function changeAttribute(attribute, csvData){
     //change yscale dynamically
     var csvmax = d3.max(csvData, function(d) {return parseFloat(d[expressed])});
     
-    console.log(csvmax);
+    /*console.log(csvmax);*/
     
     yScale = d3.scaleLinear()
         .range([chartHeight - 10, 0])
@@ -374,12 +379,14 @@ function updateChart(bars, n, colorScale){
     bars.attr("x", function(d, i){
             return i * (chartInnerWidth / n) + leftPadding;
         })
-        //size/resize bars
+        //size/resize bars (if gets rid of null values)
         .attr("height", function(d, i){
-            return (chartHeight-10) - yScale(parseFloat(d[expressed]));
-        })
+            if (yScale(parseFloat(d[expressed])) >= 0){
+                return (chartHeight-10) - yScale(parseFloat(d[expressed]))};
+            })
         .attr("y", function(d, i){
-            return yScale(parseFloat(d[expressed])) + topBottomPadding;
+            if (yScale(parseFloat(d[expressed])) >= 0){
+            return yScale(parseFloat(d[expressed])) + topBottomPadding;}
         })
         //color/recolor bars
         .style("fill", function(d){
