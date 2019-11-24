@@ -2,7 +2,7 @@
 (function(){
 
 //pseudo-global variables
-var attrArray = ["Sample Size", "Percent Birth", "Percent Pregnant", "Twin Rate", "Avg Selenium (ppb)", "Franzman (Fall)", "Franzman (Spring)", "Percent Calf Survival", "Max Fat (Fall)", "Max Fat (Spring)"];
+var attrArray = ["Sample Size", "Percent Birth", "Percent Pregnant", "Twin Rate", "Avg Selenium (ppb)", "Franzman (Fall)", "Franzman (Spring)", "Percent Calf Survival", "Max Fat (Fall)", "Max Fat (Spring)", "Natality"];
 
 /*console.log(attrArray)*/
 
